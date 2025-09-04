@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Note from '@/models/Note';
 import { getTokenFromRequest, verifyToken } from '@/lib/auth';
+export async function DELETE(request: NextRequest, context: { params: Promise<{ id: string }> }) {
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+   const { id } = await context.params;
+  
   try {
     await dbConnect();
     
@@ -26,7 +25,7 @@ export async function DELETE(
       );
     }
     
-    const { id } = params;
+ 
     
     // Find note and verify ownership
     const note = await Note.findOne({ _id: id, userId: decoded.userId });

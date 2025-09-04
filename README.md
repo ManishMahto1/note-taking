@@ -28,8 +28,8 @@ Built using **Next.js App Router, TailwindCSS, TypeScript, MongoDB, and lucide-r
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/note-taking/note-dashboard.git
-cd note-dashboard
+git clone https://github.com/ManishMahto1/note-taking.git
+cd note-taking
 ```
 
 ### 2. Install dependencies
