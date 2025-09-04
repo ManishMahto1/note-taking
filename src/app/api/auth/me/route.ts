@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
-import Note from '@/models/Note';
+import User from '@/models/User';
 import { getTokenFromRequest, verifyToken } from '@/lib/auth';
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest) {
   try {
     await dbConnect();
     
@@ -26,26 +23,21 @@ export async function DELETE(
       );
     }
     
-    const { id } = params;
-    
-    // Find note and verify ownership
-    const note = await Note.findOne({ _id: id, userId: decoded.userId });
-    if (!note) {
+    // Find user
+    const user = await User.findById(decoded.userId).select('-password -otp -otpExpiry');
+    if (!user) {
       return NextResponse.json(
-        { error: 'Note not found' },
+        { error: 'User not found' },
         { status: 404 }
       );
     }
     
-    // Delete note
-    await Note.findByIdAndDelete(id);
-    
     return NextResponse.json(
-      { message: 'Note deleted successfully' },
+      { name: user.name, email: user.email },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error('Delete note error:', error);
+    console.error('Get user error:', error);
     return NextResponse.json(
       { error: error.message || 'Internal server error' },
       { status: 500 }

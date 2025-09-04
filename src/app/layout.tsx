@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
-import AppWrapper from '@/components/AppWrapper';
+
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HD Notes App',
-  description: 'A note-taking application',
+  title: 'Notes App',
+  description: 'A simple notes app with authentication',
 };
 
 export default function RootLayout({
@@ -14,8 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <AppWrapper>{children}</AppWrapper>
+      <body className={inter.className}>
+       
+        {children}
       </body>
     </html>
   );
