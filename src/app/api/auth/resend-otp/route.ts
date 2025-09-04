@@ -44,14 +44,14 @@ export async function POST(request: NextRequest) {
         html: emailTemplate,
       });
       
-      console.log(`New login OTP email sent to ${email}`);
+      //console.log(`New login OTP email sent to ${email}`);
       
       return NextResponse.json(
         { message: 'New OTP sent to your email' },
         { status: 200 }
       );
     } catch (emailError) {
-      console.error('Failed to send OTP email:', emailError);
+     // console.error('Failed to send OTP email:', emailError);
       return NextResponse.json(
         { error: 'Failed to send verification email' },
         { status: 500 }

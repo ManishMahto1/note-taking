@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     // Find user
     const user = await User.findOne({ email });
     if (!user) {
-      console.log('User not found:', email);
+     // console.log('User not found:', email);
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user is verified
     if (!user.isVerified) {
-      console.log('User not verified:', email);
+    //  console.log('User not verified:', email);
       return NextResponse.json(
         { error: 'Please verify your email first' },
         { status: 401 }

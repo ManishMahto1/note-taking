@@ -52,21 +52,21 @@ export async function POST(request: NextRequest) {
         html: emailTemplate,
       });
       
-      console.log(`Login OTP email sent to ${email}`);
+     // console.log(`Login OTP email sent to ${email}`);
       
       return NextResponse.json(
         { message: 'OTP sent to your email. Please check your inbox.' },
         { status: 200 }
       );
     } catch (emailError) {
-      console.error('Failed to send OTP email:', emailError);
+    //  console.error('Failed to send OTP email:', emailError);
       return NextResponse.json(
         { error: 'Failed to send verification email. Please try again.' },
         { status: 500 }
       );
     }
   } catch (error: any) {
-    console.error('Request login OTP error:', error);
+    //console.error('Request login OTP error:', error);
     return NextResponse.json(
       { error: error.message || 'Internal server error' },
       { status: 500 }
